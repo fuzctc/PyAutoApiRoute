@@ -2,14 +2,15 @@
 微服务时代，接口服务越来越细致，接口路由的管理会相对散乱，自动根据规则导入模块和映射路由就非常方便，也不再需要修改路由文件，减少风险。支持flask和tornado框架
 
 
-一.路由管理规范：
+路由管理规范：
      声明:
         此规范适用于 python Flask和Tornado 框架
 
      所有仓库的API接口代码 均放在resources文件夹下，且此文件夹只能写接口API，路由会自动映射，不再需要修改入口文件增加路由信息，减少风险。
      此规则实行之前，以前已经产生的接口路由不会变，规范实行之后，统一使用如下规范编写接口文件。
-规则举例如下：
-        如下图，resources下有一个hello_world接口，还有一个ab项目文件夹，ab下面还有一个hello_world_python接口以及子项目文件夹testab, testab下面也有一个hello_world_python.
+     
+     规则举例如下：
+        如下图，resources下有一个hello_world接口，还有一个ab项目文件夹，ab下面还有一个hello_world_python接口以及子项目文件夹testab, testab      下面也有一个hello_world_python.
                
                                             
       
@@ -37,7 +38,7 @@
                  ab/hello_world_python.py ==> iap/ab/hello_world_python
                  ab/testab/hello_world_python.py ==> iap/ab/testab/hello_world_python
 
-      4.关于项目目录结构，代码里可以允许N层，但规定不允许超过3层。
+      4.关于项目目录结构，代码里可以允许N层，但建议不允许超过3层。
      
 
 
