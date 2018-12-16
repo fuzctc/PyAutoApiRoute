@@ -4,7 +4,7 @@
 
 路由管理规范：
      声明:
-        此规范适用于 python Flask和Tornado 框架
+        此规范适用于 python Flask/Tornado/Sanic/Japronto框架
 
      所有仓库的API接口代码 均放在resources文件夹下，且此文件夹只能写接口API，路由会自动映射，不再需要修改入口文件增加路由信息，减少风险。
      此规则实行之前，以前已经产生的接口路由不会变，规范实行之后，统一使用如下规范编写接口文件。
