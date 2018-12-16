@@ -47,10 +47,10 @@ def after_request(response):
 
 # APi route and processing functions
 route_path = "./resources"
-route_list = route(route_path, resources_name="resources", route_prefix="")
+route_list = route(
+    route_path, resources_name="resources", route_prefix="flask/")
 
 for item in route_list:
-    print(item)
     api.add_resource(item[1], item[0])
 
 if __name__ == "__main__":

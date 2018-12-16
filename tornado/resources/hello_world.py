@@ -15,9 +15,14 @@ return:
 END
 '''
 
+import tornado
 import tornado.web
+import time
 
 
 class HelloWorld(tornado.web.RequestHandler):
+    @tornado.gen.coroutine
     def get(self):
+        yield time.sleep(5)
         self.write("Hello, world")
+        self.finish()
