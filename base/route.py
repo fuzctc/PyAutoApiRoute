@@ -11,7 +11,7 @@ END
 
 import re
 import os
-import importlib
+#import importlib
 from . import config
 
 
@@ -38,6 +38,26 @@ def underline_to_hump(underline_str):
     if len(sub) > 1:
         return sub[0].upper() + sub[1:]
     return sub
+
+
+def import_object(name):
+    # type: (_BaseString) -> Any
+    """Imports an object by name.
+
+    import_object('x') is equivalent to 'import x'.
+    import_object('x.y.z') is equivalent to 'from x.y import z'.
+    """
+    if not isinstance(name, str):
+        name = name.encode('utf-8')
+    if name.count('.') == 0:
+        return __import__(name, None, None)
+
+    parts = name.split('.')
+    obj = __import__('.'.join(parts[:-1]), None, None, [parts[-1]], 0)
+    try:
+        return getattr(obj, parts[-1])
+    except AttributeError:
+        raise ImportError("No module named %s" % parts[-1])
 
 
 def route(route_file_path,
@@ -77,7 +97,9 @@ def route(route_file_path,
         nonlocal route_list
         nonlocal existing_route
         route_endpoint = file_name.split(".py")[0]
-        module = importlib.import_module('{}.{}'.format(
+        #module = importlib.import_module('{}.{}'.format(
+        #    resource_module_name, route_endpoint))
+        module = import_object('{}.{}'.format(
             resource_module_name, route_endpoint))
         route_class = underline_to_hump(route_endpoint)
         real_route_endpoint = r'/{}{}'.format(route_pre, route_endpoint)
